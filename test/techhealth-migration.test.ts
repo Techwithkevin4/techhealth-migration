@@ -1,17 +1,52 @@
-// import * as cdk from 'aws-cdk-lib/core';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as TechhealthMigration from '../lib/techhealth-migration-stack';
+import * as cdk from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/techhealth-migration-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new TechhealthMigration.TechhealthMigrationStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+import { TechHealthCdkStack } from '../lib/techhealth-cdk-stack';
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+test('TechHealth VPC is created', () => {
+  const app = new cdk.App();
+
+  const stack = new TechHealthCdkStack(
+    app,
+    'TestStack'
+  );
+
+  const template = Template.fromStack(stack);
+
+  template.resourceCountIs(
+    'AWS::EC2::VPC',
+    1
+  );
+});
+
+test('TechHealth creates an EC2 instance', () => {
+  const app = new cdk.App();
+
+  const stack = new TechHealthCdkStack(
+    app,
+    'TestStack'
+  );
+
+  const template = Template.fromStack(stack);
+
+  template.resourceCountIs(
+    'AWS::EC2::Instance',
+    1
+  );
+});
+
+test('TechHealth creates an RDS database', () => {
+  const app = new cdk.App();
+
+  const stack = new TechHealthCdkStack(
+    app,
+    'TestStack'
+  );
+
+  const template = Template.fromStack(stack);
+
+  template.resourceCountIs(
+    'AWS::RDS::DBInstance',
+    1
+  );
 });
