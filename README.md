@@ -4,6 +4,9 @@
 
 This project modernizes TechHealth Inc.'s legacy AWS patient portal infrastructure by migrating manually configured AWS resources to Infrastructure as Code using AWS CDK and TypeScript.
 
+<img width="1536" height="1024" alt="TechHealth Inc  1" src="https://github.com/user-attachments/assets/dca6b620-499f-4298-8564-0c547c6a97cd" />
+
+
 ## Objectives
 
 - Implement AWS infrastructure using Infrastructure as Code
